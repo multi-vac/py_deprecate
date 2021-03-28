@@ -39,7 +39,7 @@ except DeprecationIntroduced as exc:
 #> Caught deprecated exception!
 ```
 
-## Managing Behaviours
+## Behaviour
 
 `py_deprcate` will raise an exception by default if a deprecated method
 or function is called where it's not supposed to be called. This can be
