@@ -43,7 +43,7 @@ except DeprecationIntroduced as exc:
 
 `py_deprcate` will raise an exception by default if a deprecated method
 or function is called where it's not supposed to be called. This can be
-overriddent by specifying a behavior. Continuing from the example above:
+overridden by specifying a behavior. Continuing from the example above:
 
 ```py
 from py_deprecated import deprecated, Disabled
