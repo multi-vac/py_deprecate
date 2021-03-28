@@ -12,6 +12,7 @@ def deprecated(allowed_deprecations: Union[Callable, Iterable], message: str = "
         allowed_deprecations = allowed_deprecations()
 
     behavior = default_behavior
+
     def _deprecated_decorator(func: Callable):
         @wraps(func)
         def wrapped_func(*args, **kwargs):
@@ -21,5 +22,7 @@ def deprecated(allowed_deprecations: Union[Callable, Iterable], message: str = "
                 if caller_stack.frame.f_code == allowed_callable.__code__:
                     return func(*args, **kwargs)
             default_behavior().execute(message)
+
         return wrapped_func
+
     return _deprecated_decorator
