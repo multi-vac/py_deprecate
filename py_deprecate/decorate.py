@@ -4,7 +4,7 @@ import inspect
 from typing import Callable, Iterable, Union
 from functools import wraps
 
-from lib.exceptions import default_behavior
+from .settings import default_behavior
 
 
 def deprecated(allowed_deprecations: Union[Callable, Iterable], message: str = ""):

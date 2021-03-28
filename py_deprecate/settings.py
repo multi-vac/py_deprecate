@@ -1,3 +1,3 @@
-from lib.behaviors.raise_exception import RaiseException
+from py_deprecate.behaviors.raise_exception import RaiseException
 
 default_behavior = RaiseException

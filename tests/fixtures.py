@@ -1,5 +1,5 @@
 from typing import Any
-from py_deprecate.lib.decorate import deprecated
+from py_deprecate.decorate import deprecated
 
 
 def allowed_deprecated_sum_caller(a: int, b: int) -> int:
