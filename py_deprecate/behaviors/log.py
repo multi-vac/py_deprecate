@@ -6,4 +6,4 @@ logger = logging.getLogger(__name__)
 
 class Log(BaseBehavior):
     def execute(self, message: str):
-        logger.warn(logger)
+        logger.warn(f"[DeprecationIntroduced]: {message}")

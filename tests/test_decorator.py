@@ -13,7 +13,7 @@ from tests.fixtures import (
     forbidden_lambda,
     allowed_func_caller,
     forbidden_func_caller,
-    deprecated_with_custom_behavior
+    deprecated_with_custom_behavior,
 )
 
 
