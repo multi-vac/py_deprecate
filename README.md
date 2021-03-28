@@ -46,7 +46,7 @@ or function is called where it's not supposed to be called. This can be
 overridden by specifying a behavior. Continuing from the example above:
 
 ```py
-from py_deprecated import deprecated, Disabled
+from py_deprecate import deprecated, Disabled
 
 @deprecated(
     allowed_deprecations=[allowed_sum_caller],
