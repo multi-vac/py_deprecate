@@ -41,12 +41,12 @@ except DeprecationIntroduced as exc:
 
 ## Managing Behaviours
 
-py_deprcate will raise an exception by default if a deprecated method
+`py_deprcate` will raise an exception by default if a deprecated method
 or function is called where it's not supposed to be called. This can be
 overriddent by specifying a behavior. Continuing from the example above:
 
 ```py
-from deprecated, Disabled
+from py_deprecated import deprecated, Disabled
 
 @deprecated(
     allowed_deprecations=[allowed_sum_caller],
@@ -88,3 +88,12 @@ forbidden_sum_caller()
 #>  File "<stdin>", line 4, in execute
 #> Exception
 ```
+
+## Tests
+
+Run the tests using `python -m unittest`.
+
+
+## License
+
+Python Deprecation Toolkit is licensed under the [MIT License](https://github.com/multi-vac/py-deprecate/blob/master/LICENSE)
