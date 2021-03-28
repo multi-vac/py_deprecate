@@ -1,22 +1,26 @@
 from unittest import TestCase
-from tests.fixtures import (
-    allowed_deprecated_sum_caller,
-    not_allowed_deprecated_sum_caller,
-    TestClass,
-    allowed_lambda,
-    not_allowed_lambda,
-)
+
 from py_deprecate.exceptions import DeprecationIntroduced
+
+from tests.fixtures import (
+    TestClass,
+    allowed_function,
+    allowed_lambda,
+    forbidden_function,
+    forbidden_lambda,
+    allowed_func_caller,
+    forbidden_func_caller
+)
 
 
 class DeprecatedDecoratorTests(TestCase):
     def test_deprecated_function_called_from_function(self):
         # Call allowed deprecated and see nothing happens
-        allowed_deprecated_sum_caller(5, 10)
+        allowed_function(5, 10)
 
         # But calling a function that's not allowed will raise error
         with self.assertRaises(DeprecationIntroduced):
-            not_allowed_deprecated_sum_caller(5, 10)
+            forbidden_function(5, 10)
 
     def test_deprecated_function_called_from_method_instance(self):
         # Nothing happens when called with method instance
@@ -24,7 +28,7 @@ class DeprecatedDecoratorTests(TestCase):
 
         # But calling a method instance that's not allowe will raise error
         with self.assertRaises(DeprecationIntroduced):
-            TestClass().not_allowed_instance_method(5, 10)
+            TestClass().forbidden_instance_method(5, 10)
 
     def test_deprecated_function_called_from_staticmethod(self):
         # Nothing happens when called from allowed staticmethod
@@ -32,7 +36,7 @@ class DeprecatedDecoratorTests(TestCase):
 
         # But calling the not allowed static method raises the exception
         with self.assertRaises(DeprecationIntroduced):
-            TestClass.not_allowed_static_method(5, 10)
+            TestClass.forbidden_static_method(5, 10)
 
     def test_deprecated_function_called_from_classmethod(self):
         # Nothing happens when called from allowed classmethod
@@ -40,7 +44,7 @@ class DeprecatedDecoratorTests(TestCase):
 
         # But calling the not allowed static method raises the exception
         with self.assertRaises(DeprecationIntroduced):
-            TestClass.not_allowed_class_method(5, 10)
+            TestClass.forbidden_class_method(5, 10)
 
     def test_deprecated_function_called_from_lambda(self):
         # Nothing happens when called from allowed lamda
@@ -48,4 +52,14 @@ class DeprecatedDecoratorTests(TestCase):
 
         # But calling the not allowed static method raises the exception
         with self.assertRaises(DeprecationIntroduced):
-            not_allowed_lambda(5, 10)
+            forbidden_lambda(5, 10)
+
+    def test_use_decorator_with_callable(self):
+        # Nothing happens if allowed function is used
+        allowed_func_caller()
+
+        with self.assertRaises(DeprecationIntroduced):
+            forbidden_func_caller()
+    
+    def test_override_default_behavior(self):
+        # Use a caller that's not whitelisted
