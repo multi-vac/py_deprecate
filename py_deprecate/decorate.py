@@ -47,7 +47,7 @@ def deprecated(
                 if caller_stack.frame.f_code == allowed_callable.__code__:
                     return func(*args, **kwargs)
 
-            behavior().execute(message)
+            return behavior().execute(message, func, *args, **kwargs)
 
         return wrapped_func
 

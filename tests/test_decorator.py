@@ -68,4 +68,5 @@ class DeprecatedDecoratorTests(TestCase):
     def test_override_default_behavior(self):
         # Use a caller that's not whitelisted, but the default
         # behavior is something set to log.
-        deprecated_with_custom_behavior()
+        response = deprecated_with_custom_behavior()
+        self.assertEqual(response, "Hello world!")

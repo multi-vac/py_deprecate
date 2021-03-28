@@ -38,3 +38,53 @@ except DeprecationIntroduced as exc:
     print("Caught deprecated exception!")
 #> Caught deprecated exception!
 ```
+
+## Managing Behaviours
+
+py_deprcate will raise an exception by default if a deprecated method
+or function is called where it's not supposed to be called. This can be
+overriddent by specifying a behavior. Continuing from the example above:
+
+```py
+from deprecated, Disabled
+
+@deprecated(
+    allowed_deprecations=[allowed_sum_caller],
+    message="sum is no longer supported.",
+    behavior=Disabled
+)
+def sum(a: int, b: int) -> int:
+    return a + b
+
+assert forbidden_sum_caller() == 15
+```
+
+Here we've disabled all the side effects by using `Disabled` behavior. By default
+three behaviors are present: `Disabled`, `RaiseExeption`, and `Log`. You can also
+write your own behaviors like this:
+
+```py
+from typing import Callable
+from py_deprecate.behaviors.base import BaseBehavior
+
+class CustomBehavior(BaseBehavior):
+    def execute(self, message: str, func: Callable, *args, **kwargs):
+        print("Custom behavior that will print this and raise Exception.")
+        raise Exception
+
+@deprecated(
+    allowed_deprecations=[allowed_sum_caller],
+    message="sum is no longer supported.",
+    behavior=CustomBehavior
+)
+def sum(a: int, b: int) -> int:
+    return a + b
+
+forbidden_sum_caller()
+
+#> Custom behavior that will print this and raise Exception.
+#> Traceback (most recent call last):
+#>  ...
+#>  File "<stdin>", line 4, in execute
+#> Exception
+```
