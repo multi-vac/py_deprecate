@@ -94,6 +94,13 @@ forbidden_sum_caller()
 Run the tests using `python -m unittest`.
 
 
+## Resources
+
+[https://sirupsen.com/shitlists/](Shitlist Driven Development)
+[https://github.com/Shopify/deprecation_toolkit](This awesome Ruby gem that inspired me to create py_deprecate!)
+
 ## License
 
-Python Deprecation Toolkit is licensed under the [MIT License](https://github.com/multi-vac/py-deprecate/blob/master/LICENSE)
+Python Deprecation Toolkit is licensed under the [MIT License](https://github.com/multi-vac/py-deprecate/blob/master/LICENSE).
+
+
