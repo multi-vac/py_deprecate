@@ -96,7 +96,7 @@ Run the tests using `python -m unittest`.
 
 ## Resources
 
-[Shitlist Driven Development](https://sirupsen.com/shitlists/)
+[Shitlist Driven Development](https://sirupsen.com/shitlists/) \
 [This awesome Ruby gem that inspired me to create py_deprecate!](https://github.com/Shopify/deprecation_toolkit)
 
 ## License
