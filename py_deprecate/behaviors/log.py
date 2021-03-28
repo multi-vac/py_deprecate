@@ -6,5 +6,5 @@ logger = logging.getLogger(__name__)
 
 
 class Log(BaseBehavior):
-   def execute(self, message: str, func: Callable, *args, **kwargs):
+    def execute(self, message: str, func: Callable, *args, **kwargs):
         logger.warn(f"[DeprecationIntroduced]: Deprecated {func} called: {message}")
