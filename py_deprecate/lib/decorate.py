@@ -4,14 +4,14 @@ import inspect
 from typing import Callable, Iterable, Union
 from functools import wraps
 
-from lib.exceptions import ShitListedCallableCalled
-logger = logging.getLogger(__name__)
+from lib.exceptions import default_behavior
 
 
 def deprecated(allowed_deprecations: Union[Callable, Iterable], message: str = ""):
     if isinstance(allowed_deprecations, Callable):
         allowed_deprecations = allowed_deprecations()
 
+    behavior = default_behavior
     def _deprecated_decorator(func: Callable):
         @wraps(func)
         def wrapped_func(*args, **kwargs):
@@ -20,6 +20,6 @@ def deprecated(allowed_deprecations: Union[Callable, Iterable], message: str = "
             for allowed_callable in allowed_deprecations:
                 if caller_stack.frame.f_code == allowed_callable.__code__:
                     return func(*args, **kwargs)
-            raise ShitListedCallableCalled(message)
+            default_behavior().execute(message)
         return wrapped_func
     return _deprecated_decorator

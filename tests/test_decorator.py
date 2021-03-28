@@ -1,6 +1,6 @@
 from unittest import TestCase
 from tests.fixtures import allowed_deprecated_sum_caller, not_allowed_deprecated_sum_caller, TestClass, allowed_lambda, not_allowed_lambda
-from lib.exceptions import ShitListedCallableCalled
+from py_deprecatelib.exceptions import ShitListedCallableCalled
 
 
 class DeprecatedDecoratorTests(TestCase):
