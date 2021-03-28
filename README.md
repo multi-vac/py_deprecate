@@ -32,14 +32,9 @@ def sum(a: int, b: int) -> int:
 assert allowed_sum_caller() == 15
 
 # Now, try with the function that's not whitelisted
-forbidden_sum_caller()
-
-#>Traceback (most recent call last):
-#>File "<stdin>", line 1, in <module>
-#>File "<stdin>", line 2, in forbidden_sum_caller
-#>File "/home/user/py_deprecate/decorate.py", line 50, in wrapped_func
-#>  behavior().execute(message)
-#>File "/home/user/py_deprecate/behaviors/raise_exception.py", line 7, in execute
-#>  raise DeprecationIntroduced(message)
-#>py_deprecate.exceptions.DeprecationIntroduced: sum is no longer supported.
+try:
+    forbidden_sum_caller()
+except DeprecationIntroduced as exc:
+    print("Caught deprecated exception!")
+#> Caught deprecated exception!
 ```
