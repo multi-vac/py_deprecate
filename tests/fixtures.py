@@ -1,5 +1,5 @@
 from typing import Any, List
-from py_deprecate.decorate import deprecated
+from py_deprecate import deprecated, Disabled
 
 
 def allowed_function(a: int, b: int) -> int:
@@ -55,12 +55,20 @@ def deprecated_sum(a: Any, b: Any) -> Any:
 def get_allowed_deprecations() -> List:
     return [allowed_func_caller]
 
+
 def allowed_func_caller():
     func_with_decorator_using_a_callable()
+
 
 def forbidden_func_caller():
     func_with_decorator_using_a_callable()
 
+
 @deprecated(allowed_deprecations=get_allowed_deprecations)
 def func_with_decorator_using_a_callable() -> str:
+    return "Hello world!"
+
+
+@deprecated(allowed_deprecations=[], message="Deprecate func", behavior=Disabled)
+def deprecated_with_custom_behavior():
     return "Hello world!"

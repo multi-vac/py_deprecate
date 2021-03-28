@@ -1,4 +1,4 @@
-from behaviors.base import BaseBehavior
+from py_deprecate.behaviors.base import BaseBehavior
 
 
 class Disabled(BaseBehavior):

@@ -1,6 +1,9 @@
 from unittest import TestCase
 
+from py_deprecate.behaviors.log import Log
 from py_deprecate.exceptions import DeprecationIntroduced
+from py_deprecate import settings
+
 
 from tests.fixtures import (
     TestClass,
@@ -9,7 +12,8 @@ from tests.fixtures import (
     forbidden_function,
     forbidden_lambda,
     allowed_func_caller,
-    forbidden_func_caller
+    forbidden_func_caller,
+    deprecated_with_custom_behavior
 )
 
 
@@ -60,6 +64,8 @@ class DeprecatedDecoratorTests(TestCase):
 
         with self.assertRaises(DeprecationIntroduced):
             forbidden_func_caller()
-    
+
     def test_override_default_behavior(self):
-        # Use a caller that's not whitelisted
+        # Use a caller that's not whitelisted, but the default
+        # behavior is something set to log.
+        deprecated_with_custom_behavior()
